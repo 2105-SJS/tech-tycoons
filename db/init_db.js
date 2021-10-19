@@ -9,6 +9,7 @@ const dropTables = async () => {
     console.log("Starting to drop tables...");
 
     await client.query(`
+      DROP TABLE IF EXISTS orders;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
     `);
@@ -46,6 +47,13 @@ const createTables = async () => {
         password varchar(255) UNIQUE NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false
       );
+
+      CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        "userId" INTEGER REFERENCES users(id),
+        status varchar(255) DEFAULT 'created',
+        "datePlaced" DATE DEFAULT CURRENT_DATE
+      )
       `);
 
 
