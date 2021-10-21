@@ -30,7 +30,7 @@ const createTables = async () => {
     await client.query(`
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
-        title varchar(255) UNIQUE NOT NULL,
+        title varchar(255) NOT NULL,
         author varchar(255) NOT NULL,
         genre varchar(255) NOT NULL,
         description varchar(255) NOT NULL,
@@ -46,8 +46,8 @@ const createTables = async () => {
         email varchar(255) UNIQUE NOT NULL,
         "imgURL" varchar(255) DEFAULT 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
         username varchar(255) UNIQUE NOT NULL,
-        password varchar(255) UNIQUE NOT NULL,
-        "isAdmin" BOOLEAN NOT NULL DEFAULT false
+        password varchar(255) NOT NULL
+        
       );
 
       CREATE TABLE orders (
@@ -71,32 +71,32 @@ async function createInitialProducts() {
 
       console.log("Starting to create products...");
       await createProducts({
-        title: '',
+        title: 'book1',
         author: '',
         genre: '',
         description: '',
         price: '',
-        inStock: '',
+        inStock: false,
         imgURL: ''
       });
 
       await createProducts({
-        title: '',
+        title: 'book2',
         author: '',
         genre: '',
         description: '',
         price: '',
-        inStock: '',
+        inStock: false,
         imgURL: ''
       });
 
       await createProducts({
-        title: '',
+        title: 'book3',
         author: '',
         genre: '',
         description: '',
         price: '',
-        inStock: '',
+        inStock: false,
         imgURL: ''
       });
       
@@ -117,8 +117,7 @@ async function createInitialUsers() {
         email: 'janessa@someemail.com',
         imgURL: '', // do we need this?
         username: 'janessa123',
-        password: 'password',
-        isAdmin: true
+        password: 'password'
       });
       await createUser({
         firstName: 'kevin',
@@ -126,8 +125,7 @@ async function createInitialUsers() {
         email: 'kevin@someemail.com',
         imgURL: '', // do we need this?
         username: 'kevin123',
-        password: 'password',
-        isAdmin: true
+        password: 'password'
       });
       await createUser({
         firstName: 'brandon',
@@ -135,8 +133,7 @@ async function createInitialUsers() {
         email: 'brandon@someemail.com',
         imgURL: '', // do we need this?
         username: 'brandon123',
-        password: 'password',
-        isAdmin: true
+        password: 'password'
       });
       await createUser({
         firstName: 'jean',
@@ -144,8 +141,7 @@ async function createInitialUsers() {
         email: 'jean@someemail.com',
         imgURL: '', // do we need this?
         username: 'jean123',
-        password: 'password',
-        isAdmin: false
+        password: 'password'
       });
 
       console.log("Finished creating users!");
