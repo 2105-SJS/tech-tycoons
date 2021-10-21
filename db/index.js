@@ -12,16 +12,15 @@ async function createUser({
   email,
   imgURL,
   username,
-  password,
-  isAdmin
+  password
 }) {
   try {
     const { rows: [user] } = await client.query(`
-          INSERT INTO users("firstName", "lastName", email, "imgURL", username, password, isAdmin)
-          VALUES ($1, $2, $3, $4, $5, $6, $7)
+          INSERT INTO users("firstName", "lastName", email, "imgURL", username, password)
+          VALUES ($1, $2, $3, $4, $5, $6)
           ON CONFLICT (username) DO NOTHING
           RETURNING *;
-        `, [firstName, lastName, email, imgURL, username, password, isAdmin]);
+        `, [firstName, lastName, email, imgURL, username, password]);
 
     return user;
   } catch (error) {
