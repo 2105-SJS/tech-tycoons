@@ -157,13 +157,7 @@ async function createInitialUsers() {
   }
 }
 
-async function populateInitialData() {
-  try {
-    // create useful starting data
-  } catch (error) {
-    throw error;
-  }
-}
+
 
 const rebuildDB = async () => {
   try {
@@ -180,6 +174,5 @@ const rebuildDB = async () => {
 }
 
 rebuildDB()
-  .then(populateInitialData)
   .catch(console.error)
   .finally(() => client.end());
