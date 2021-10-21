@@ -181,4 +181,4 @@ const rebuildDB = async () => {
 rebuildDB()
   .then(populateInitialData)
   .catch(console.error)
-  .finally(() => client.end());
+  .finally(() => client.end());git 
