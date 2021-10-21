@@ -6,6 +6,7 @@ const {
   // other db methods 
 } = require('./index');
 
+
 const dropTables = async () => {
   try {
     console.log("Starting to drop tables...");
