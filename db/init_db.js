@@ -71,33 +71,33 @@ async function createInitialProducts() {
 
       console.log("Starting to create products...");
       await createProducts({
-        title: 'book1',
-        author: '',
-        genre: '',
-        description: '',
-        price: '',
-        inStock: false,
-        imgURL: ''
+        title: 'The Hobbit',
+        author: 'J. R. R. Tolkien',
+        genre: 'Fantasy',
+        description: `The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins, the titular hobbit, to win a share of the treasure guarded by Smaug the dragon. Bilbo's journey takes him from his light-hearted, rural surroundings into more sinister territory.`,
+        price: '11.92',
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
       });
 
       await createProducts({
-        title: 'book2',
-        author: '',
-        genre: '',
-        description: '',
-        price: '',
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
+        genre: 'Fiction',
+        description: `The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.`,
+        price: '9.30',
         inStock: false,
-        imgURL: ''
+        imgURL: 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781949846386/the-great-gatsby-large-print-9781949846386_hr.jpg'
       });
 
       await createProducts({
-        title: 'book3',
-        author: '',
-        genre: '',
-        description: '',
-        price: '',
-        inStock: false,
-        imgURL: ''
+        title: 'The Subtle Art of Not Giving a F*ck',
+        author: 'Mark Manson',
+        genre: 'Self-help',
+        description: `The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life is the second book by blogger and author Mark Manson. In it Manson argues that life's struggles give it meaning, and that the mindless positivity of typical self-help books is neither practical nor helpful.`,
+        price: '10.50',
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
       });
       
       console.log("Finished creating posts!");
