@@ -15,6 +15,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
     `);
+    
 
     console.log("Finished dropping tables!");
   } catch (error) {
