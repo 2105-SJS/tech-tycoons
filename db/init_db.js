@@ -1,6 +1,8 @@
 // code to build and initialize DB goes here
 const {
-  client
+  client,
+  createUser,
+  createProducts
   // other db methods 
 } = require('./index');
 
@@ -64,15 +66,92 @@ const createTables = async () => {
   }
 }
 
-const rebuildDB = async () => {
+async function createInitialProducts() {
   try {
-    client.connect();
 
-    await dropTables();
-    await createTables();
+      console.log("Starting to create products...");
+      await createProducts({
+        title: '',
+        author: '',
+        genre: '',
+        description: '',
+        price: '',
+        inStock: '',
+        imgURL: ''
+      });
+
+      await createProducts({
+        title: '',
+        author: '',
+        genre: '',
+        description: '',
+        price: '',
+        inStock: '',
+        imgURL: ''
+      });
+
+      await createProducts({
+        title: '',
+        author: '',
+        genre: '',
+        description: '',
+        price: '',
+        inStock: '',
+        imgURL: ''
+      });
+      
+      console.log("Finished creating posts!");
   } catch (error) {
-    console.log("Error during rebuildDB")
-    throw error;
+      console.log("Error creating posts!");
+      throw error;
+  }
+}
+
+async function createInitialUsers() {
+  try {
+      console.log("Starting to create users...");
+
+      await createUser({
+        firstName: 'janessa',
+        lastName: 'ortiz',
+        email: 'janessa@someemail.com',
+        imgURL: '', // do we need this?
+        username: 'janessa123',
+        password: 'password',
+        isAdmin: true
+      });
+      await createUser({
+        firstName: 'kevin',
+        lastName: 'kepner',
+        email: 'kevin@someemail.com',
+        imgURL: '', // do we need this?
+        username: 'kevin123',
+        password: 'password',
+        isAdmin: true
+      });
+      await createUser({
+        firstName: 'brandon',
+        lastName: 'fillpot',
+        email: 'brandon@someemail.com',
+        imgURL: '', // do we need this?
+        username: 'brandon123',
+        password: 'password',
+        isAdmin: true
+      });
+      await createUser({
+        firstName: 'jean',
+        lastName: 'leconte',
+        email: 'jean@someemail.com',
+        imgURL: '', // do we need this?
+        username: 'jean123',
+        password: 'password',
+        isAdmin: false
+      });
+
+      console.log("Finished creating users!");
+  } catch (error) {
+      console.error("Error creating users!");
+      throw error;
   }
 }
 
@@ -80,6 +159,20 @@ async function populateInitialData() {
   try {
     // create useful starting data
   } catch (error) {
+    throw error;
+  }
+}
+
+const rebuildDB = async () => {
+  try {
+    client.connect();
+
+    await dropTables();
+    await createTables();
+    await createInitialProducts();
+    await createInitialUsers();
+  } catch (error) {
+    console.log("Error during rebuildDB")
     throw error;
   }
 }
