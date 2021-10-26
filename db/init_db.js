@@ -129,7 +129,7 @@ async function createInitialUsers() {
       firstName: 'janessa',
       lastName: 'ortiz',
       email: 'janessa@someemail.com',
-      imgURL: '', // do we need this?
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
       username: 'janessa123',
       password: 'password',
       isAdmin: true
@@ -138,7 +138,7 @@ async function createInitialUsers() {
       firstName: 'kevin',
       lastName: 'kepner',
       email: 'kevin@someemail.com',
-      imgURL: '', // do we need this?
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
       username: 'kevin123',
       password: 'password',
       isAdmin: true
@@ -147,7 +147,7 @@ async function createInitialUsers() {
       firstName: 'brandon',
       lastName: 'fillpot',
       email: 'brandon@someemail.com',
-      imgURL: '', // do we need this?
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
       username: 'brandon123',
       password: 'password',
       isAdmin: true
@@ -156,7 +156,7 @@ async function createInitialUsers() {
       firstName: 'jean',
       lastName: 'leconte',
       email: 'jean@someemail.com',
-      imgURL: '', // do we need this?
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
       username: 'jean123',
       password: 'password',
       isAdmin: false
@@ -187,41 +187,13 @@ async function testDB() {
   try {
     console.log("Starting to test database...")
 
-    // console.log("Calling getAllUsers")
-    // const users = await getAllUsers();
-    // console.log("Result:", users);
-
-    // console.log("Calling updateUser on users[0")
-    // const updateUserResult = await updateUser(users[0].id, {
-    //     name: "Newname Sogood",
-    //     location: "Lesterville, KY"
-    // });
-    // console.log("Result:", updateUserResult);
-
     console.log("Calling getAllProducts");
     const products = await getAllProducts();
     console.log("Result:", products);
 
-    // console.log("Calling updatePost on posts[0]");
-    // const updatePostResult = await updatePost(posts[0].id, {
-    //     title: "New Title",
-    //     content: "Updated Content"
-    // });
-    // console.log("Result:", updatePostResult);
-
-    // console.log("Calling updatePost on posts[1], only updating tags");
-    // const updatePostTagsResult = await updatePost(posts[1].id, {
-    //   tags: ["#youcandoanything", "#redfish", "#bluefish"]
-    // });
-    // console.log("Result:", updatePostTagsResult);
-
     console.log("Calling getProductsyId with 1");
-    const hobbit = await getProductsById(1);
-    console.log("Result:", hobbit);
-
-    // console.log("Calling getPostsByTagName with #happy");
-    // const postsWithHappy = await getPostsByTagName("#happy");
-    // console.log("Result:", postsWithHappy);
+    const book1 = await getProductsById(1);
+    console.log("Result:", book1);
 
     console.log("Finished database tests!");
   } catch (error) {
@@ -233,4 +205,4 @@ async function testDB() {
 rebuildDB()
   .then(testDB)
   .catch(console.error)
-  .finally(() => client.end());git 
+  .finally(() => client.end());
