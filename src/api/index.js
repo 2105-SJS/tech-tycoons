@@ -8,3 +8,15 @@ export async function getSomething() {
     throw error;
   }
 }
+
+//Products//
+
+export async function getAllProducts() {
+  try {
+    const { data } = await axios.get("/api/products");
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
