@@ -93,7 +93,7 @@ productsRouter.get("/", async (req, res, next) => {
     }
   
     if (genre) {
-      updateFields.category = genre;
+      updateFields.genre = genre;
     }
   
     try {
