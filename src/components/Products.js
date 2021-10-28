@@ -9,7 +9,7 @@ const Products = ({ products, setProducts }) => {
             try {
                 const prodResp = await callApi({ url: '/api/products' });
                 if (prodResp) {
-                    setProducts(prodResp)
+                    setProducts(prodResp.products)
                     return prodResp
                 }
             } catch (error) {
