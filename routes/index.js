@@ -6,4 +6,6 @@ apiRouter.get("/", (req, res, next) => {
   });
 });
 
+apiRouter.use('/products', require('./products'));
+
 module.exports = apiRouter;

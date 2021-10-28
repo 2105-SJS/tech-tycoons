@@ -2,9 +2,12 @@
 const {
   client,
   createUser,
-  createProducts
+  createProducts,
+  getAllProducts,
+  getProductsById
   // other db methods 
 } = require('./index');
+
 
 const dropTables = async () => {
   try {
@@ -15,7 +18,7 @@ const dropTables = async () => {
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
     `);
-    
+
 
     console.log("Finished dropping tables!");
   } catch (error) {
@@ -57,7 +60,16 @@ const createTables = async () => {
         "userId" INTEGER REFERENCES users(id),
         status varchar(255) DEFAULT 'created',
         "datePlaced" DATE DEFAULT CURRENT_DATE
-      )
+      );
+
+      CREATE TABLE order_products (
+        id SERIAL PRIMARY KEY,
+        "productId" INTEGER REFERENCES products(id),
+        "orderId" INTEGER REFERENCES orders(id),
+        price NUMERIC(5,2) NOT NULL,
+        quantity INTEGER DEFAULT 0 NOT NULL,
+        UNIQUE("productId", "orderId")
+        );
       `);
 
 
@@ -71,93 +83,91 @@ const createTables = async () => {
 async function createInitialProducts() {
   try {
 
-      console.log("Starting to create products...");
-      await createProducts({
-        title: 'The Hobbit',
-        author: 'J. R. R. Tolkien',
-        genre: 'Fantasy',
-        description: `The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins.`,
-        price: '11.92',
-        inStock: true,
-        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
-      });
+    console.log("Starting to create products...");
+    await createProducts({
+      title: 'The Hobbit',
+      author: 'J. R. R. Tolkien',
+      genre: 'Fantasy',
+      description: `The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins.`,
+      price: '11.92',
+      inStock: true,
+      imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
+    });
 
-      await createProducts({
-        title: 'The Great Gatsby',
-        author: 'F. Scott Fitzgerald',
-        genre: 'Fiction',
-        description: `The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.`,
-        price: '9.30',
-        inStock: false,
-        imgURL: 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781949846386/the-great-gatsby-large-print-9781949846386_hr.jpg'
-      });
+    await createProducts({
+      title: 'The Great Gatsby',
+      author: 'F. Scott Fitzgerald',
+      genre: 'Fiction',
+      description: `The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.`,
+      price: '9.30',
+      inStock: false,
+      imgURL: 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781949846386/the-great-gatsby-large-print-9781949846386_hr.jpg'
+    });
 
-      await createProducts({
-        title: 'The Subtle Art of Not Giving a F*ck',
-        author: 'Mark Manson',
-        genre: 'Self-help',
-        description: `The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life.`,
-        price: '10.50',
-        inStock: true,
-        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
-      });
-      
-      console.log("Finished creating posts!");
+    await createProducts({
+      title: 'The Subtle Art of Not Giving a F*ck',
+      author: 'Mark Manson',
+      genre: 'Self-help',
+      description: `The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life.`,
+      price: '10.50',
+      inStock: true,
+      imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
+    });
+
+    console.log("Finished creating posts!");
   } catch (error) {
-      console.log("Error creating posts!");
-      throw error;
+    console.log("Error creating posts!");
+    throw error;
   }
 }
 
 async function createInitialUsers() {
   try {
-      console.log("Starting to create users...");
+    console.log("Starting to create users...");
 
-      await createUser({
-        firstName: 'janessa',
-        lastName: 'ortiz',
-        email: 'janessa@someemail.com',
-        imgURL: '', // do we need this?
-        username: 'janessa123',
-        password: 'password',
-        isAdmin: true
-      });
-      await createUser({
-        firstName: 'kevin',
-        lastName: 'kepner',
-        email: 'kevin@someemail.com',
-        imgURL: '', // do we need this?
-        username: 'kevin123',
-        password: 'password',
-        isAdmin: true
-      });
-      await createUser({
-        firstName: 'brandon',
-        lastName: 'fillpot',
-        email: 'brandon@someemail.com',
-        imgURL: '', // do we need this?
-        username: 'brandon123',
-        password: 'password',
-        isAdmin: true
-      });
-      await createUser({
-        firstName: 'jean',
-        lastName: 'leconte',
-        email: 'jean@someemail.com',
-        imgURL: '', // do we need this?
-        username: 'jean123',
-        password: 'password',
-        isAdmin: false
-      });
+    await createUser({
+      firstName: 'janessa',
+      lastName: 'ortiz',
+      email: 'janessa@someemail.com',
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+      username: 'janessa123',
+      password: 'password',
+      isAdmin: true
+    });
+    await createUser({
+      firstName: 'kevin',
+      lastName: 'kepner',
+      email: 'kevin@someemail.com',
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+      username: 'kevin123',
+      password: 'password',
+      isAdmin: true
+    });
+    await createUser({
+      firstName: 'brandon',
+      lastName: 'fillpot',
+      email: 'brandon@someemail.com',
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+      username: 'brandon123',
+      password: 'password',
+      isAdmin: true
+    });
+    await createUser({
+      firstName: 'jean',
+      lastName: 'leconte',
+      email: 'jean@someemail.com',
+      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+      username: 'jean123',
+      password: 'password',
+      isAdmin: false
+    });
 
-      console.log("Finished creating users!");
+    console.log("Finished creating users!");
   } catch (error) {
-      console.error("Error creating users!");
-      throw error;
+    console.error("Error creating users!");
+    throw error;
   }
 }
-
-
 
 const rebuildDB = async () => {
   try {
@@ -173,6 +183,26 @@ const rebuildDB = async () => {
   }
 }
 
+async function testDB() {
+  try {
+    console.log("Starting to test database...")
+
+    console.log("Calling getAllProducts");
+    const products = await getAllProducts();
+    console.log("Result:", products);
+
+    console.log("Calling getProductsyId with 1");
+    const book1 = await getProductsById(1);
+    console.log("Result:", book1);
+
+    console.log("Finished database tests!");
+  } catch (error) {
+    console.error("Error testing database!");
+    throw error;
+  }
+}
+
 rebuildDB()
+  .then(testDB)
   .catch(console.error)
   .finally(() => client.end());

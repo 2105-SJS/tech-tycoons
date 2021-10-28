@@ -4,6 +4,7 @@ const DB_NAME = 'bookshelf'
 const DB_URL = process.env.DATABASE_URL || `postgres://localhost:5432/${ DB_NAME }`;
 const client = new Client(DB_URL);
 
+
 // database methods
 
 async function createUser({
@@ -51,11 +52,44 @@ async function createProducts({
   }
 }
 
+async function getAllProducts() {
+  try {
+    const { rows } = await client.query(`
+            SELECT *
+            FROM products;
+        `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getProductsById(productsId) {
+  try {
+    const { rows: [products] } = await client.query(`
+        SELECT *
+        FROM products
+        WHERE id=$1
+      `, [productsId]);
+
+    if (!products) {
+      return null;
+    }
+
+    return products;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 
 // export
 module.exports = {
   client,
   createUser,
-  createProducts
+  createProducts,
+  getAllProducts,
+  getProductsById
   // db methods
 }
