@@ -65,7 +65,7 @@ const createTables = async () => {
       CREATE TABLE order_products (
         id SERIAL PRIMARY KEY,
         "productId" INTEGER REFERENCES products(id),
-        "orderId" INTEGER REFERNCES orders(id),
+        "orderId" INTEGER REFERENCES orders(id),
         price NUMERIC(5,2) NOT NULL,
         quantity INTEGER DEFAULT 0 NOT NULL,
         UNIQUE("productId", "orderId")
