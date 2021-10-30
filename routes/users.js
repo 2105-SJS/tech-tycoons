@@ -18,4 +18,4 @@ usersRouter.get("/", async (_, res, next) => {
     }
   });
 
-module.exports = usersR
+module.exports = usersRouter
