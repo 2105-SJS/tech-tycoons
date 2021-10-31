@@ -2,13 +2,14 @@ const express = require('express');
 const usersRouter = express.Router();
 const { getAllUsers } = require('../db');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET = 'neverTell' } = process.env;
 const {
   getUserByUsername,
   createUser,
 } = require('../db')
 
-usersRouter.post('/users/register', async (req, res, next) => {
+usersRouter.post('/register', async (req, res, next) => {
+    console.log('users register')
     const { username, password, firstName, lastName, email } = req.body;
   
     try {
@@ -32,7 +33,7 @@ usersRouter.post('/users/register', async (req, res, next) => {
             email,
             username,
             password,
-            isAdmin
+            isAdmin: false
         });
         if(!user){
             next({
@@ -43,7 +44,7 @@ usersRouter.post('/users/register', async (req, res, next) => {
             const token = jwt.sign({ 
                 id: user.id, 
                 username
-              }, process.env.JWT_SECRET, {
+              }, JWT_SECRET, {
                 expiresIn: '1w'});
             res.send({ 
                 message: "thank you for signing up",
