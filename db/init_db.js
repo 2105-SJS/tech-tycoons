@@ -2,9 +2,18 @@
 const {
   client,
   createUser,
+  getAllUsers,
+  getUserById,
+  getUserByUsername,
   createProducts,
   getAllProducts,
-  getProductsById
+  getProductsById,
+  createOrder,
+  getOrderById,
+  getAllOrders,
+  getOrdersByUser,
+  getOrdersByProduct,
+  getCartByUser
   // other db methods 
 } = require('./index');
 
@@ -14,6 +23,7 @@ const dropTables = async () => {
     console.log("Starting to drop tables...");
 
     await client.query(`
+      DROP TABLE IF EXISTS order_products;
       DROP TABLE IF EXISTS orders;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
@@ -186,6 +196,8 @@ const rebuildDB = async () => {
 async function testDB() {
   try {
     console.log("Starting to test database...")
+
+
 
     console.log("Calling getAllProducts");
     const products = await getAllProducts();
