@@ -46,7 +46,8 @@ usersRouter.post('/register', async (req, res, next) => {
                 username
             }, JWT_SECRET, {
                 expiresIn: '1w'});
-            res.send({ 
+            res.send({
+                user,
                 message: "thank you for signing up",
                 token 
                 });
@@ -57,6 +58,44 @@ usersRouter.post('/register', async (req, res, next) => {
       next({ name, message })
     } 
 
+  });
+
+  usersRouter.post('/login', async (req, res, next) => {
+    
+    const { username, password } = req.body;
+  
+    
+    if (!username || !password) {
+      next({
+        name: "MissingCredentialsError",
+        message: "Please supply both a username and password"
+      });
+    }
+  
+    try {
+      const user = await getUserByUsername(username);
+      console.log('user: ', user)
+      const token = jwt.sign({ 
+          id: user.id, 
+          username}, 
+          JWT_SECRET);
+      console.log('token: ', token)
+  
+      if (user && user.password == password) {
+        res.send({ 
+            user, 
+            message: "you're logged in!", 
+            token: token });
+      } else {
+        next({ 
+          name: 'IncorrectCredentialsError', 
+          message: 'Username or password is incorrect'
+        });
+      }
+    } catch(error) {
+      console.log(error);
+      next(error);
+    }
   });
 
 module.exports = usersRouter

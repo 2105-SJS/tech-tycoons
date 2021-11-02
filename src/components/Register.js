@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router';
 
 
 
-const AccountForm = ({ setToken, setUser }) => {
+const Register = ({ setToken, setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -15,7 +15,7 @@ const AccountForm = ({ setToken, setUser }) => {
 
 
   return <>
-    <p>Login/Register</p>
+    <p>Register</p>
     <form onSubmit={async (event) => {
       event.preventDefault();
 
@@ -40,14 +40,7 @@ const AccountForm = ({ setToken, setUser }) => {
         console.log(token)
         setToken(token)
         if (data) {
-          const userResp = await fetch(`${baseURL}/me`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
-          })
-          const userData = await userResp.json()
-          setUser(userData)
+          setUser(data.user)
           history.push('/')
         }
       }
@@ -66,4 +59,4 @@ const AccountForm = ({ setToken, setUser }) => {
   </>
 }
 
-export default AccountForm;
+export default Register;
