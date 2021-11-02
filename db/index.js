@@ -3,7 +3,7 @@ const { Client } = require('pg');
 const DB_NAME = 'bookshelf'
 const DB_URL = process.env.DATABASE_URL || `postgres://localhost:5432/${ DB_NAME }`;
 const client = new Client(DB_URL);
-const bcrypt = require("bcrypt");
+
 
 // database methods
 
@@ -82,6 +82,20 @@ async function getProductsById(productsId) {
   }
 }
 
+const getUserByUsername = async (username) => {
+  try {
+    const { rows: [user] } = await client.query(`
+      SELECT *
+      FROM users
+      WHERE username=$1;
+    `, [username]);
+  
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 
 // export
@@ -90,6 +104,7 @@ module.exports = {
   createUser,
   createProducts,
   getAllProducts,
-  getProductsById
+  getProductsById,
+  getUserByUsername
   // db methods
 }
