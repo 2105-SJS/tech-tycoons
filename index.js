@@ -22,14 +22,6 @@ server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 });
 
-server.use(({name, message}, req, res, next) => {
-  console.error({name, message})
-  res.status(500);
-  res.send(
-    {name, message}
-  )
-});
-
 // bring in the DB connection
 const { client } = require('./db');
 
