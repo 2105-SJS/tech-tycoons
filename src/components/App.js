@@ -8,7 +8,8 @@ import {
 
 import Products from './Products';
 import Home from './Home';
-import AccountForm from './AccountForm';
+import Register from './Register';
+import Login from './Login';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -30,7 +31,7 @@ const App = () => {
     <div className="App">
       <h1>BookShelf</h1>
       <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link>
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link>
       </div>
       <div>{message}</div>
         <Route exact path='/'>
@@ -39,8 +40,11 @@ const App = () => {
         <Route exact path='/products'>
           <Products products={products} setProducts={setProducts} />
         </Route>
-        <Route exact path='/users/:method'>
-          <AccountForm setToken={setToken} setUser={setUser} />
+        <Route exact path='/users/register'>
+          <Register setToken={setToken} setUser={setUser} />
+        </Route>
+        <Route exact path='/users/login'>
+          <Login setToken={setToken} setUser={setUser}/>
         </Route>
     </div>
   );
