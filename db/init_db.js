@@ -59,7 +59,7 @@ const createTables = async () => {
         title varchar(255) NOT NULL,
         author varchar(255) NOT NULL,
         genre varchar(255) NOT NULL,
-        description varchar(255) NOT NULL,
+        description varchar(500) NOT NULL,
         price varchar(255) NOT NULL,
         "inStock" BOOLEAN NOT NULL DEFAULT false,
         "imgURL" varchar(255) DEFAULT 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg'
@@ -114,16 +114,6 @@ async function createInitialProducts() {
       price: '11.92',
       inStock: true,
       imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
-    });
-
-    await createProducts({
-      title: 'The Great Gatsby',
-      author: 'F. Scott Fitzgerald',
-      genre: 'Fiction',
-      description: `The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald.`,
-      price: '9.30',
-      inStock: false,
-      imgURL: 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781949846386/the-great-gatsby-large-print-9781949846386_hr.jpg'
     });
 
     await createProducts({
