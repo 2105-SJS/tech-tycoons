@@ -42,12 +42,11 @@ const Products = ({ products, setProducts }) => {
                     }
                 }).map(product => <>
                     <div key={product.id} className='singleProduct'>
-                        <h3>
-                            {product.title}
-                        </h3>
+                        <h3>{product.title}</h3>
+                        <h4>By: {product.author}</h4>
                         <img src={product.imgURL} className='picture'/>
                         <div><em>{product.description}</em></div>
-                        <div>${product.price}</div>
+                        <h4>${product.price}</h4>
                         <button>Add to cart</button>
                     </div>
                 </>) : null

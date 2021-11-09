@@ -10,6 +10,7 @@ import Products from './Products';
 import Home from './Home';
 import Register from './Register';
 import Login from './Login';
+import AdminPortal from './AdminPortal';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -31,7 +32,7 @@ const App = () => {
     <div className="App">
       <h1>BookShelf</h1>
       <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link>
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/admin_portal'>Admin Portal</Link>
       </div>
       <div>{message}</div>
         <Route exact path='/'>
@@ -45,6 +46,9 @@ const App = () => {
         </Route>
         <Route exact path='/users/login'>
           <Login setToken={setToken} setUser={setUser}/>
+        </Route>
+        <Route exact path='/admin_portal'>
+          <AdminPortal/>
         </Route>
     </div>
   );

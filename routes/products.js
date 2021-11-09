@@ -3,7 +3,7 @@ const productsRouter = express.Router()
 
 const {
     getAllProducts,
-    createProduct,
+    createProducts,
     getProductById,
     updateProduct,
   } = require("../db");
@@ -41,7 +41,7 @@ const {
         if (!price) {
           res.send(next(console.error({ message: "Must include price" })));
         }
-        const newProduct = await createProduct(productData); // req.body
+        const newProduct = await createProducts(productData); // req.body
         res.send({
           message: "Product successfully created!",
           newProduct,
