@@ -7,10 +7,14 @@ import {
 } from '../api';
 
 import Products from './Products';
+import Home from './Home';
+import AccountForm from './AccountForm';
 
 const App = () => {
   const [message, setMessage] = useState('');
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [user, setUser] = useState('')
+  const [token, setToken] = useState('')
 
   useEffect(() => {
     getSomething()
@@ -24,10 +28,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
+      <h1>BookShelf</h1>
+      <div id='navbar' className='navbar'>
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link>
+      </div>
       <div>{message}</div>
+        <Route exact path='/'>
+          <Home username={user.username} />
+        </Route>
         <Route exact path='/products'>
           <Products products={products} setProducts={setProducts} />
+        </Route>
+        <Route exact path='/users/:method'>
+          <AccountForm setToken={setToken} setUser={setUser} />
         </Route>
     </div>
   );
