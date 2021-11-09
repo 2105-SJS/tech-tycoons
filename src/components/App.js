@@ -27,7 +27,7 @@ const App = () => {
         setMessage(error.message);
       });
   });
-
+  console.log('user1:', user)
   return (
     <div className="App">
       <h1>BookShelf</h1>
