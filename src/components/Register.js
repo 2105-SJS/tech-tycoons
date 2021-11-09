@@ -49,12 +49,24 @@ const Register = ({ setToken, setUser }) => {
       }
 
     }}>
-      <input type='text' placeholder='username' value={username} onChange={(event) => setUsername(event.target.value)}></input>
-      <input type='password' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)}></input>
-      <input type='text' placeholder='First Name' value={firstName} onChange={(event) => setFirstName(event.target.value)}></input>
-      <input type='text' placeholder='Last Name' value={lastName} onChange={(event) => setLastName(event.target.value)}></input>
-      <input type='email' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}></input>
-      <button type='submit'>Submit</button>
+      <p>
+        <input type='text' placeholder='username' value={username} onChange={(event) => setUsername(event.target.value)} className='input'></input>
+      </p>
+      <p>
+        <input type='password' placeholder='password' value={password} onChange={(event) => setPassword(event.target.value)} className='input'></input>
+      </p>
+      <p>
+        <input type='text' placeholder='First Name' value={firstName} onChange={(event) => setFirstName(event.target.value)} className='input'></input>
+      </p>
+      <p>
+        <input type='text' placeholder='Last Name' value={lastName} onChange={(event) => setLastName(event.target.value)} className='input'></input>
+      </p>
+      <p>
+        <input type='email' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)} className='input'></input>
+      </p>
+      <p>
+        <button type='submit'>Submit</button>
+      </p>
     </form>
   </>
 }

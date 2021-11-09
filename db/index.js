@@ -28,7 +28,7 @@ async function createUser({
         `, [firstName, lastName, email, imgURL, username, hashedPassword, isAdmin]);
     password = hashedPassword;
     delete user.password;
-
+    console.log(user)
     return user;
   } catch (error) {
     console.error(error);

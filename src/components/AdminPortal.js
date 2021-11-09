@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router'
 
-const AdminPortal = () => {
+const AdminPortal = ({admin}) => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [genre, setGenre] = useState('')
@@ -11,6 +11,7 @@ const AdminPortal = () => {
     const history = useHistory();
 
     return <>
+        { admin ? <>
         <p>Add Product</p>
         <form onSubmit={async (event) => {
             event.preventDefault();
@@ -42,15 +43,31 @@ const AdminPortal = () => {
             console.error(error)
             }
     
-        }}>
-            <input type='text' placeholder='title' value={title} onChange={(event) => setTitle(event.target.value)}></input>
-            <input type='text' placeholder='genre' value={genre} onChange={(event) => setGenre(event.target.value)}></input>
-            <input type='text' placeholder='description' value={description} onChange={(event) => setDescription(event.target.value)} className='descriptionField'></input>
-            <input type='text' placeholder='author' value={author} onChange={(event) => setAuthor(event.target.value)}></input>
-            <input type='text' placeholder='imgURL' value={imgURL} onChange={(event) => setImgURL(event.target.value)}></input>
-            <input type='text' placeholder='price' value={price} onChange={(event) => setPrice(event.target.value)}></input>
-            <button type='submit'>Submit</button>
+        }} className='singleProduct'>
+            <p>
+                <input type='text' placeholder='Title...' value={title} onChange={(event) => setTitle(event.target.value)} className='input'></input>
+            </p>
+            <p>
+                <input type='text' placeholder='Genre...' value={genre} onChange={(event) => setGenre(event.target.value)} className='input'></input>
+            </p>
+            <p>
+                <input type='text' placeholder='Description...' value={description} onChange={(event) => setDescription(event.target.value)} className='DescriptionField' className='description'></input>
+            </p>
+            <p>
+                <input type='text' placeholder='Author...' value={author} onChange={(event) => setAuthor(event.target.value)} className='input'></input>
+            </p>
+            <p>
+                <input type='text' placeholder='imgURL...' value={imgURL} onChange={(event) => setImgURL(event.target.value)} className='input'></input>
+            </p>
+            <p>
+                <input type='text' placeholder='Price...' value={price} onChange={(event) => setPrice(event.target.value)} className='input'></input>
+            </p>
+            <p>
+                <button type='submit'>Submit</button>
+            </p>
         </form>
+        </>
+        : null }
         </>
 }
 

@@ -78,6 +78,7 @@ usersRouter.post('/register', async (req, res, next) => {
       console.log('user: ', user)
 
       const isMatched = await bcrypt.compare(password, user.password);
+      console.log(isMatched)
   
       if (isMatched) {
         const token = jwt.sign({ 

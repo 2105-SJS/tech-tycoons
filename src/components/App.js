@@ -27,12 +27,12 @@ const App = () => {
         setMessage(error.message);
       });
   });
-
+  console.log('user1:', user)
   return (
     <div className="App">
       <h1>BookShelf</h1>
       <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/admin_portal'>Admin Portal</Link>
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | { user.isAdmin ? <Link to='/admin_portal'>Admin Portal</Link> : null }
       </div>
       <div>{message}</div>
         <Route exact path='/'>
@@ -48,7 +48,7 @@ const App = () => {
           <Login setToken={setToken} setUser={setUser}/>
         </Route>
         <Route exact path='/admin_portal'>
-          <AdminPortal/>
+          <AdminPortal admin={user.isAdmin}/>
         </Route>
     </div>
   );
