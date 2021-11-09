@@ -2,9 +2,30 @@
 const {
   client,
   createUser,
+  getUser,
+  getAllUsers,
+  getUserById,
+  getUserByUsername,
   createProducts,
   getAllProducts,
-  getProductsById
+  getProductsById,
+  createOrder,
+  getOrderById,
+  getAllOrders,
+  getOrdersByUser,
+  getOrdersByProduct,
+  getCartByUser,
+  getOrderProductById,
+  addProductToOrder,
+  updateOrderProduct,
+  destroyOrderProduct,
+  updateOrder,
+  completeOrder,
+  cancelOrder,
+  _getProductsByOrderId,
+  destroyProduct,
+  updateProduct,
+  updateUser
   // other db methods 
 } = require('./index');
 
@@ -14,6 +35,7 @@ const dropTables = async () => {
     console.log("Starting to drop tables...");
 
     await client.query(`
+      DROP TABLE IF EXISTS order_products;
       DROP TABLE IF EXISTS orders;
       DROP TABLE IF EXISTS users;
       DROP TABLE IF EXISTS products;
@@ -169,6 +191,49 @@ async function createInitialUsers() {
   }
 }
 
+async function createInitialOrders() {
+  try {
+    console.log("Starting to create orders...");
+    const [janessa, kevin, brandon, jean] = await getAllUsers();
+    console.log("xxxxx", janessa);
+
+    await createOrder({
+      userId: janessa.id,
+      status: "created",
+      datePlaced: "2021-10-15"
+    });
+
+    console.log("Finished creating orders!");
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function createInitialOrderProducts() {
+  try {
+    console.log('starting to create order_products...');
+    // const [hobbit, gatsby, subtle] = await addProductToOrder();
+
+
+    const orderProductsToCreate = [
+      {
+        orderId: '',
+        productId: '',
+        price: '',
+        quantity: ''
+      }
+    ]
+
+    const orderProducts = await Promise.all(orderProductsToCreate.map(addProductToOrder));
+    console.log('order_products created: ', orderProducts);
+    console.log('Finished creating order_products!');
+
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 const rebuildDB = async () => {
   try {
     client.connect();
@@ -177,6 +242,8 @@ const rebuildDB = async () => {
     await createTables();
     await createInitialProducts();
     await createInitialUsers();
+    await createInitialOrders();
+    await createInitialOrderProducts();
   } catch (error) {
     console.log("Error during rebuildDB")
     throw error;
@@ -187,6 +254,8 @@ async function testDB() {
   try {
     console.log("Starting to test database...")
 
+
+
     console.log("Calling getAllProducts");
     const products = await getAllProducts();
     console.log("Result:", products);
@@ -194,6 +263,10 @@ async function testDB() {
     console.log("Calling getProductsyId with 1");
     const book1 = await getProductsById(1);
     console.log("Result:", book1);
+
+    console.log("Calling getAllOrders");
+    const orders = await getAllOrders();
+    console.log("Result:", orders);
 
     console.log("Finished database tests!");
   } catch (error) {
