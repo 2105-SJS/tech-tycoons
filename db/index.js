@@ -55,6 +55,47 @@ async function getUser({ username, password }) {
   }
 }
 
+const _getOrderById = async (id) => {
+  try {
+      const { rows: [order]} = await client.query (`
+          SELECT * FROM orders
+          WHERE id = $1;
+      `,[id]);
+      return order;
+  } catch (error) {
+      console.error(error);
+  };
+};
+
+const _joinOrderProducts = async (orderId) => {
+  try {
+      const order = await _getOrderById(orderId);
+      const orderProducts = await getOrderProductsByOrder({id: orderId});
+      order.products = [];
+      await Promise.all(orderProducts.map(async (orderProduct) => {
+          const product = await getProductById(orderProduct.productId);
+          product.price = orderProduct.price;
+          product.quantity = orderProduct.quantity;
+          order.products.push(product);
+      }))
+      return order;
+  } catch (error) {
+      console.error (error);
+  };
+};
+
+const getOrderProductsByOrder = async ({ id: orderId }) => {
+  try {
+      const { rows: orderProducts } = await client.query (`
+          SELECT * FROM order_products
+          WHERE "orderId" = $1;
+      `,[orderId]);
+      return orderProducts;
+  } catch (error) {
+      console.error (error);
+  };
+};
+
 async function getAllUsers() {
   try {
     const { rows: id } = await client.query(`
@@ -260,20 +301,21 @@ async function getOrdersByProduct({ id }) {
   }
 }
 
-async function getCartByUser({ id }) {
+const getCartByUser = async ({ id }) => {
   try {
-    const { rows: [cart] } = await client.query(`
-      SELECT *
-      FROM orders
-      WHERE "userId"=$1 AND status='created'
-    `, [id]);
-
-    return cart;
+      const { rows: orders } = await client.query(`
+          SELECT * FROM orders
+          WHERE "userId" = $1 AND status IN ('created');
+      `,[id]);
+      const orderProducts = await Promise.all(orders.map(async (order) => {
+          const orderProduct = _joinOrderProducts(order.id);
+          return orderProduct;
+      }));
+      return orderProducts;
   } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
+      console.error (error);
+  };
+};
 
 // -------------------------------------------- DATABASE ORDER PRODUCTS METHODS
 
@@ -328,6 +370,19 @@ async function updateOrderProduct({ id, price, quantity }) {
   } catch (error) {
     console.error(error);
     throw error;
+  }
+}
+
+const getProductById = async (id) => {
+  try {
+      const { rows: [product] } = await client.query(`
+      SELECT *
+      FROM products
+      WHERE id=$1;
+    `, [id]);
+      return product;
+  } catch (error) {
+      throw error;
   }
 }
 
