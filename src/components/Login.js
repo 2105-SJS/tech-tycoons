@@ -29,7 +29,9 @@ const Login = ({ setToken, setUser }) => {
           console.log('login data:', data)
           const token = data.token
           console.log(token)
+          if (token) {
           setToken(token)
+          }
           if (data) {
             setUser(data.user)
             history.push('/')
