@@ -155,7 +155,7 @@ const books = [
     {
         title: 'The Couple Next Door',
         author: 'Shari Lapena',
-        genre: 'True crime',
+        genre: 'True Crime',
         description: `A domestic suspense debut about a young couple and their apparently friendly neighbors—a twisty, rollercoaster ride of lies, betrayal, and the secrets between husbands and wives.`,
         price: 6.89,
         inStock: true,
@@ -223,6 +223,78 @@ const books = [
         price: 8.99,
         inStock: true,
         imgURL: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1509198386l/36491465._SY475_.jpg'
+    },
+    {
+        title: 'Fight Club',
+        author: 'Chuck Palahniuk',
+        genre: 'Satirical',
+        description: ` Fight Club follows the experiences of an unnamed protagonist struggling with insomnia.`,
+        price: 7.75,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/61wfUmGRZzL._SY291_BO1,204,203,200_QL40_ML2_.jpg'
+    },
+    {
+        title: 'American Psycho',
+        author: 'Bret Easton Ellis',
+        genre: 'Transgressive Fiction',
+        description: ` Patrick Bateman moves among the young and trendy in 1980s Manhattan. Young, handsome, and well educated, Bateman earns his fortune on Wall Street by day while spending his nights in ways we cannot begin to fathom.`,
+        price: 14.19,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/51VbL9aA91L._SX258_BO1,204,203,200_.jpg'
+    },
+    {
+        title: 'The Catcher in the Rye',
+        author: 'J.D. Salinger',
+        genre: 'Realistic Fiction',
+        description: ` Through circumstances that tend to preclude adult, secondhand description, Holden leaves his prep school in Pennsylvania and goes underground in New York City for three days.`,
+        price: 12.78,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg'
+    },
+    {
+        title: '1984',
+        author: 'George Orwell',
+        genre: 'Political Fiction',
+        description: ` 1984 is a dystopian novella which follows the life of Winston Smith, a low ranking member of the Party, who is frustrated by the omnipresent eyes of the party, and its ominous ruler Big Brother.`,
+        price: 7.47,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/81StSOpmkjL.jpg'
+    },
+    {
+        title: 'A Clockwork Orange',
+        author: 'Anthony Burgess',
+        genre: 'Science Fiction',
+        description: ` Alex, a teen who talks in a fantastically inventive slang that evocatively renders his and his friends’ intense reaction against their society.`,
+        price: 13.28,
+        inStock: true,
+        imgURL: 'https://m.media-amazon.com/images/I/41R1mhq0LrL.jpg'
+    },
+    {
+        title: 'Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream',
+        author: 'Hunter S. Thompson',
+        genre: 'Gonzo Journalism',
+        description: ` This cult classic of gonzo journalism is the best chronicle of drug-soaked, addle-brained, rollicking good times ever committed to the printed page.`,
+        price: 8.88,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/718WrWeyy6L.jpg'
+    },
+    {
+        title: 'The Adventures of Tom Sawyer',
+        author: 'Mark Twain',
+        genre: 'Folk',
+        description: ` The Adventures of Tom Sawyer by Mark Twain is an 1876 novel about a young boy growing up along the Mississippi River.`,
+        price: 4.88,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/41fK2D8MUjL.jpg'
+    },
+    {
+        title: 'The Adventures of Huckleberry Finn',
+        author: 'Mark Twain',
+        genre: 'Folk',
+        description: ` Climb aboard the raft with Huck and Jim and drift away from the "sivilized" life and into a world of adventure, excitement, and dnager.`,
+        price: 4.92,
+        inStock: true,
+        imgURL: 'https://m.media-amazon.com/images/I/513NVF-pHOL.jpg'
     },
 ];
 
