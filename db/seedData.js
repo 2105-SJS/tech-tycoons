@@ -264,7 +264,7 @@ const books = [
         title: 'A Clockwork Orange',
         author: 'Anthony Burgess',
         genre: 'Science Fiction',
-        description: ` Alex, a teen who talks in a fantastically inventive slang that evocatively renders his and his friends’ intense reaction against their society.`,
+        description: ` Alex, a teen who talks in a fantastically inventive slang that evocatively renders him with intense reaction against his society.`,
         price: 13.28,
         inStock: true,
         imgURL: 'https://m.media-amazon.com/images/I/41R1mhq0LrL.jpg'
@@ -291,7 +291,7 @@ const books = [
         title: 'The Adventures of Huckleberry Finn',
         author: 'Mark Twain',
         genre: 'Folk',
-        description: ` Climb aboard the raft with Huck and Jim and drift away from the "sivilized" life and into a world of adventure, excitement, and dnager.`,
+        description: ` Climb aboard the raft with Huck and Jim and drift away from the civilized life and into a world of adventure, excitement, and dnager.`,
         price: 4.92,
         inStock: true,
         imgURL: 'https://m.media-amazon.com/images/I/513NVF-pHOL.jpg'
