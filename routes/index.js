@@ -29,7 +29,9 @@ apiRouter.use(async (req, res, next) => {
   };
 });
 
-apiRouter.use('/products', require('./products'));
+apiRouter.use((error, req, res, next) => {
+  res.send(error);
+});
 
 apiRouter.use('/users', require('./users'))
 

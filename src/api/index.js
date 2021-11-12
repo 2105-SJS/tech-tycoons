@@ -8,6 +8,44 @@ export async function getSomething() {
     throw error;
   }
 }
+//USERS//
+
+export async function createUser(username, email, password) {
+  try {
+    const response = await fetch("/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    });
+    const data = await response.json();
+    const token = await data.token;
+    storeCurrentUser(token);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function loginUser() {
+  try {
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getAllUsers() {
+  try {
+    const { data } = await axios.get("/api/users");
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 //Products//
 
@@ -21,23 +59,23 @@ export async function getAllProducts() {
 }
 
 export async function createProduct({
-  img_url,
+  imgURL,
   title,
   description,
   price,
   author,
   genre,
-  inventory
+  inStock,
 }) {
   try {
     const { data } = await axios.post("/api/products", {
-      img_url,
+      imgURL,
       title,
       description,
       price,
       author,
       genre,
-      inventory
+      inStock,
     });
     return data;
   } catch (error) {
