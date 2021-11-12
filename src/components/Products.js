@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { callApi } from "./util/callApi";
 
 const Products = ({ products, setProducts }) => {
-
+    const [searchTerm, setSearchTerm] = useState('')
     useEffect(() => {
         const fetchProducts = async () => {
 
@@ -23,17 +23,31 @@ const Products = ({ products, setProducts }) => {
 
 
     return <>
-        <h1 className='title'>
-            Products
-        </h1>
+        <h2 className='title'>
+            What Will You Read Next?
+        </h2>
+        <p>
+            <input type="text" placeholder='Search...'          className='searchBar' onChange={event => {
+                setSearchTerm(event.target.value)
+            }}
+            />
+        </p>
         <div className='content'>
             {
-                products ? products.map(product => <>
-                    <div key={product.id} className='singleRoutine'>
-                        <h3>
-                            {product.title}
-                        </h3>
-                        <div>{product.description}</div>
+                products ? products.filter((val) => {
+                    if(searchTerm == ''){
+                        return val
+                    } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map(product => <>
+                    <div key={product.id} className='singleProduct'>
+                        <h3>{product.title}</h3>
+                        <h4>By: {product.author}</h4>
+                        <img src={product.imgURL} className='picture'/>
+                        <div><em>{product.description}</em></div>
+                        <h4>${product.price}</h4>
+                        <button>Add to cart</button>
                     </div>
                 </>) : null
             }
