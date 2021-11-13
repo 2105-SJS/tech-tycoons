@@ -67,11 +67,13 @@ const CheckoutForm = () => {
     return <>
         <form id = "payment-form" onSubmit = {handleSubmit}>
             <PaymentElement id = "payment-element" />
+            <p>
             <button disabled = {isLoading || !stripe || !elements} id = "submit">
                 <span id = "button-text">
                     {isLoading ? <div classname = "spinner" id = "spinner"></div> : "Pay now"}
                 </span>
             </button>
+            </p>
             {message && <div id = "payment-message">{message}</div>}
         </form>
     </>

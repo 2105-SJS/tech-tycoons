@@ -24,13 +24,14 @@ const Orders = ({ token, orders, setOrders }) => {
         }
         fetchOrders()
     }, [])
+    
     console.log('userOrders:', orders)
     
     return <>
         <h2 className='title'>
             My Cart
         </h2>
-        <div className='content'>
+        <div className='cartContent'>
             {
                 orders.map(order => <>
                     <div key={order.id} className='singleCart'>
