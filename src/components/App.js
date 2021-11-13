@@ -13,6 +13,7 @@ import Login from './Login';
 import AdminPortal from './AdminPortal';
 import Orders from './Orders';
 import Checkout from './Checkout';
+import Navigation from './Navigation';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -34,10 +35,7 @@ const App = () => {
   console.log('tokentoken:', token)
   return (
     <div className="App">
-      <h1>BookShelf</h1>
-      <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/cart'>Cart</Link> | { user.isAdmin ? <Link to='/admin_portal'>Admin Portal</Link> : null }
-      </div>
+      <Navigation token={token}/>
       <div>{message}</div>
         <Route exact path='/'>
           <Home username={user.username} />
