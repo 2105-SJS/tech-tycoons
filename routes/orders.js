@@ -24,7 +24,7 @@ const calculateOrderAmount = (items) => {
 
 ordersRouter.post("/create-payment-intent", async (req, res) => {
     const {items} = req.body;
-
+    console.log('is it there?')
     const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(items),
         currency: "usd",
@@ -52,6 +52,25 @@ ordersRouter.get('/cart', requireUser, async (req, res, next) => {
             message: 'Nothing in cart'
         })
     }
+});
+
+ordersRouter.post('/', requireUser, async (req, res, next) => {
+    try {
+        const { id } = req.user;
+        const order = await createOrder({ userId: id });
+        if (order) {
+            res.status(200);
+            res.send(order);
+        } else {
+            res.status(401);
+            next({
+                name: 'FailedCreateError',
+                message: 'This order was not sucessfully created'
+            });
+        };
+    } catch (error) {
+        next(error);
+    };
 });
 
 module.exports = ordersRouter;

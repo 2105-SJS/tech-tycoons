@@ -13,7 +13,7 @@ const Checkout = () => {
         const dummyItem = {
           description: "The Hobbit",
           price: 12.99,
-          imageURL:"ice cream",
+          imageURL:"",
           inStock: true,
           category:''
         }
