@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 
-const Navigation = ({token}) => {
+const Navigation = ({user}) => {
     return (<>
             <CssBaseline />
             <AppBar position="static" elevation={0} sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}>
@@ -14,12 +14,12 @@ const Navigation = ({token}) => {
                         BOOKSHELF
                     </Typography>
                     <nav>
-                        <Link to='/' sx={{ my: 1, mx: 1.5 }}>Home</Link>
+                        <Link to='/' sx={{my: 1, mx: 1.5 }}>Home</Link>
                         <Link to='/products' sx={{ my: 1, mx: 1.5 }}>Products</Link>
                         <Link to='/users/register' sx={{ my: 1, mx: 1.5 }}>Register</Link>
                         <Link to='/users/login' sx={{ my: 1, mx: 1.5 }}>Login</Link>
                         <Link to='/cart' sx={{ my: 1, mx: 1.5 }}>Cart</Link>
-                        {token ? <Link to='/admin_portal' sx={{ my: 1, mx: 1.5 }}>Admin Portal</Link> : ''}
+                        {user.isAdmin ? <Link to='/admin_portal' sx={{ my: 1, mx: 1.5 }}>Admin Portal</Link> : null}
                     </nav>
                 </Toolbar>
             </AppBar>
