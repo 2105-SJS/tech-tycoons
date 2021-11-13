@@ -54,7 +54,6 @@ const Register = ({ setToken, setUser }) => {
             email
           })
         })
-      })
       console.log(resp)
       const data = await resp.json()
       console.log(data)

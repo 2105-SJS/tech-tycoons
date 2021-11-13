@@ -11,31 +11,33 @@ import Home from './Home';
 import Register from './Register';
 import Login from './Login';
 import AdminPortal from './AdminPortal';
-import Navigation from './Navigation';
+import Orders from './Orders';
+import Checkout from './Checkout';
 
 const App = () => {
   const [message, setMessage] = useState('');
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState('')
   const [token, setToken] = useState('')
+  const [orders, setOrders] = useState([])
 
-  useEffect(() => {
-    getSomething()
-      .then(response => {
-        setMessage(response.message);
-      })
-      .catch(error => {
-        setMessage(error.message);
-      });
-  });
-
+  // useEffect(() => {
+  //   getSomething()
+  //     .then(response => {
+  //       setMessage(response.message);
+  //     })
+  //     .catch(error => {
+  //       setMessage(error.message);
+  //     });
+  // });
+  console.log('user1:', user)
+  console.log('tokentoken:', token)
   return (
     <div className="App">
-      <Navigation />
-      {/* <h1>BookShelf</h1>
+      <h1>BookShelf</h1>
       <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/admin_portal'>Admin Portal</Link>
-      </div> */}
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/cart'>Cart</Link> | { user.isAdmin ? <Link to='/admin_portal'>Admin Portal</Link> : null }
+      </div>
       <div>{message}</div>
         <Route exact path='/'>
           <Home username={user.username} />
@@ -50,7 +52,10 @@ const App = () => {
           <Login setToken={setToken} setUser={setUser}/>
         </Route>
         <Route exact path='/admin_portal'>
-          <AdminPortal/>
+          <AdminPortal admin={user.isAdmin}/>
+        </Route>
+        <Route exact path='/cart'>
+          <Orders orders={orders} setOrders={setOrders} token={token}/>
         </Route>
     </div>
   );
