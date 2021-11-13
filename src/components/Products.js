@@ -19,7 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Products = ({ products, setProducts }) => {
+const Products = ({ products, setProducts, token }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const theme = createTheme();
 
@@ -40,7 +40,14 @@ const Products = ({ products, setProducts }) => {
         fetchProducts()
     }, [])
     console.log('products:', products)
-
+    const handleAdd = async (product) => {
+        try {
+            const addedOrder = await callApi({ url: '/api/orders', method: 'POST', token, body: product})
+            console.log('did it work?:', addedOrder)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return <>
         <ThemeProvider theme={theme}>
@@ -71,7 +78,8 @@ const Products = ({ products, setProducts }) => {
                                                 <h4>By: {product.author}</h4>
                                                 <div><em>{product.description}</em></div>
                                                 <h4>${product.price}</h4>
-                                                <Button startIcon={<ShoppingCartIcon />} variant="text">Add to cart</Button>
+                                                <Button onClick={() => {
+                                                    handleAdd(product)}}startIcon={<ShoppingCartIcon />} variant="text">Add to cart</Button>
                                             </Typography>
                                         </CardContent>
                                     </div>
