@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { callApi } from "./util/callApi";
+import { useHistory } from "react-router";
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -22,6 +23,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const Products = ({ products, setProducts, token }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const theme = createTheme();
+    const history = useHistory()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -46,6 +48,9 @@ const Products = ({ products, setProducts, token }) => {
             console.log('did it work?:', addedOrder)
         } catch (error) {
             console.error(error)
+        }
+        if(addedOrder){
+        history.push('/cart')
         }
     }
 

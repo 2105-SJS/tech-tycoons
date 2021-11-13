@@ -7,6 +7,7 @@ import Checkout from "./Checkout"
 const stripePromise = loadStripe('pk_test_51JusunD5T9FRXtu5HaKA85U7PgcMm0WUeGR70beFsYLtCc0Nn6leAI6xdKdJ3KFm2VJin9iSJh98SdyQkznUtXuv00tbmNlpFQ');
 
 const Orders = ({ token, orders, setOrders }) => {
+    let total = 0
     useEffect(() => {
         const fetchOrders = async () => {
 
@@ -24,7 +25,9 @@ const Orders = ({ token, orders, setOrders }) => {
         }
         fetchOrders()
     }, [])
-    
+    for(let i = 0; i < orders.length; i++){
+        total += Number(orders[i].products[0].price)
+    }
     console.log('userOrders:', orders)
     
     return <>
@@ -46,6 +49,7 @@ const Orders = ({ token, orders, setOrders }) => {
                 </>)
             }
         </div>
+        <h2>${total}</h2>
         <div>
             <Checkout />
         </div>
