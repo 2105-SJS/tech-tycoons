@@ -44,7 +44,7 @@ const CheckoutForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        // console.log()
         if (!stripe || !elements) {
             return;
         }
