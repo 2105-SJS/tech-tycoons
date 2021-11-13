@@ -292,28 +292,19 @@ async function getOrderProductById(id) {
 }
 
 async function addProductToOrder({ orderId, productId, price, quantity }) {
-
   try {
-    const { rows: [order] } = await client.query(`
-      SELECT * FROM order_products
-      WHERE "orderId"=$1 AND "productId"=$2;
-    `, [orderId, productId]);
-
-    if (!order) {
-      const { rows: [order_product] } = await client.query(`
-      INSERT INTO order_products("orderId", "productId", price, quantity)
-      VALUES($1, $2, $3, $4)
-      SET price = $3, quantity = ${quantity}
-      RETURNING *;
-    `, [orderId, productId, price, quantity]);
-
-      return order_product;
-    }
+    const { rows: [order_products] } = await client.query(`
+          INSERT INTO order_products ("orderId", "productId", price, quantity)
+          VALUES ($1, $2, $3, $4)
+          ON CONFLICT ("orderId", "productId") DO UPDATE
+          SET price = $3, quantity = $4
+          RETURNING *;
+      `, [orderId, productId, price, quantity]);
+    return order_products;
   } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
+    console.error(error)
+  };
+};
 
 async function updateOrderProduct({ id, price, quantity }) {
   try {

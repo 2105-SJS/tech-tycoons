@@ -29,6 +29,9 @@ const {
   // other db methods 
 } = require('./index');
 
+const {
+  books
+} = require('./seedData');
 
 const dropTables = async () => {
   try {
@@ -106,27 +109,9 @@ async function createInitialProducts() {
   try {
 
     console.log("Starting to create products...");
-    await createProducts({
-      title: 'The Hobbit',
-      author: 'J. R. R. Tolkien',
-      genre: 'Fantasy',
-      description: `The Hobbit is set within Tolkien's fictional universe and follows the quest of home-loving Bilbo Baggins.`,
-      price: '11.92',
-      inStock: true,
-      imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
-    });
+    await Promise.all(books.map(createProducts));
 
-    await createProducts({
-      title: 'The Subtle Art of Not Giving a F*ck',
-      author: 'Mark Manson',
-      genre: 'Self-help',
-      description: `The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life.`,
-      price: '10.50',
-      inStock: true,
-      imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
-    });
-
-    console.log("Finished creating posts!");
+    console.log("Finished creating products!");
   } catch (error) {
     console.log("Error creating posts!");
     throw error;
@@ -137,42 +122,47 @@ async function createInitialUsers() {
   try {
     console.log("Starting to create users...");
 
-    await createUser({
-      firstName: 'janessa',
-      lastName: 'ortiz',
-      email: 'janessa@someemail.com',
-      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-      username: 'janessa123',
-      password: 'password',
-      isAdmin: true
-    });
-    await createUser({
-      firstName: 'kevin',
-      lastName: 'kepner',
-      email: 'kevin@someemail.com',
-      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-      username: 'kevin123',
-      password: 'password',
-      isAdmin: true
-    });
-    await createUser({
-      firstName: 'brandon',
-      lastName: 'fillpot',
-      email: 'brandon@someemail.com',
-      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-      username: 'brandon123',
-      password: 'password',
-      isAdmin: true
-    });
-    await createUser({
-      firstName: 'jean',
-      lastName: 'leconte',
-      email: 'jean@someemail.com',
-      imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
-      username: 'jean123',
-      password: 'password',
-      isAdmin: false
-    });
+    const usersCreated = [
+      {
+        firstName: 'janessa',
+        lastName: 'ortiz',
+        email: 'janessa@someemail.com',
+        imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+        username: 'janessa123',
+        password: 'password',
+        isAdmin: true
+      },
+      {
+        firstName: 'kevin',
+        lastName: 'kepner',
+        email: 'kevin@someemail.com',
+        imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+        username: 'kevin123',
+        password: 'password',
+        isAdmin: true
+      },
+      {
+        firstName: 'brandon',
+        lastName: 'fillpot',
+        email: 'brandon@someemail.com',
+        imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+        username: 'brandon123',
+        password: 'password',
+        isAdmin: true
+      },
+      {
+        firstName: 'jean',
+        lastName: 'leconte',
+        email: 'jean@someemail.com',
+        imgURL: 'https://www.eduprizeschools.net/wp-content/uploads/2016/06/No_Image_Available.jpg',
+        username: 'jean123',
+        password: 'password',
+        isAdmin: false
+      }
+    ];
+    const users = await Promise.all(usersCreated.map(createUser));
+    console.log('Users created:');
+    console.log(users);
 
     console.log("Finished creating users!");
   } catch (error) {
@@ -184,14 +174,16 @@ async function createInitialUsers() {
 async function createInitialOrders() {
   try {
     console.log("Starting to create orders...");
-    const [janessa, kevin, brandon, jean] = await getAllUsers();
-    console.log("xxxxx", janessa);
-
-    await createOrder({
-      userId: janessa.id,
-      status: "created",
-      datePlaced: "2021-10-15"
-    });
+    const ordersToCreate = [
+      { userId: 2, status: 'created', datePlaced: '2021-11-10' },
+      { userId: 1, status: 'completed', datePlaced: '2021-11-05' },
+      { userId: 1, status: 'cancelled', datePlaced: '2021-11-06' },
+      { userId: 3, status: 'completed', datePlaced: '2021-10-31' },
+      { userId: 2, status: 'created', datePlaced: '2021-11-10' },
+      { userId: 3, status: 'completed', datePlaced: '2021-11-01' }
+    ]
+    const orders = await Promise.all(ordersToCreate.map(createOrder));
+    console.log('orders created:', orders);
 
     console.log("Finished creating orders!");
   } catch (error) {
@@ -202,20 +194,18 @@ async function createInitialOrders() {
 async function createInitialOrderProducts() {
   try {
     console.log('starting to create order_products...');
-    // const [hobbit, gatsby, subtle] = await addProductToOrder();
-
-
-    const orderProductsToCreate = [
-      {
-        orderId: '',
-        productId: '',
-        price: '',
-        quantity: ''
-      }
+    const productsToAdd = [
+      { orderId: 1, productId: 1, price: 11.92, quantity: 1 },
+      { orderId: 2, productId: 1, price: 11.92, quantity: 2 },
+      { orderId: 3, productId: 1, price: 11.92, quantity: 2 },
+      { orderId: 4, productId: 2, price: 10.50, quantity: 1 },
+      { orderId: 5, productId: 3, price: 7.89, quantity: 1 },
+      { orderId: 6, productId: 3, price: 7.89, quantity: 1 },
+      { orderId: 1, productId: 1, price: 11.92, quantity: 2 }
     ]
-
-    const orderProducts = await Promise.all(orderProductsToCreate.map(addProductToOrder));
-    console.log('order_products created: ', orderProducts);
+    const orderProducts = await Promise.all(productsToAdd.map(addProductToOrder));
+    console.log('Added products:');
+    console.log(orderProducts);
     console.log('Finished creating order_products!');
 
   } catch (error) {

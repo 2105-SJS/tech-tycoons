@@ -11,6 +11,7 @@ import Home from './Home';
 import Register from './Register';
 import Login from './Login';
 import AdminPortal from './AdminPortal';
+import Navigation from './Navigation';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -30,10 +31,11 @@ const App = () => {
   console.log('user1:', user)
   return (
     <div className="App">
-      <h1>BookShelf</h1>
+      <Navigation token={token}/>
+      {/* <h1>BookShelf</h1>
       <div id='navbar' className='navbar'>
-          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | { user.isAdmin ? <Link to='/admin_portal'>Admin Portal</Link> : null }
-      </div>
+          <Link to='/'>Home</Link> | <Link to='/products'>Products</Link> | <Link to='/users/register'>Register</Link> | <Link to='/users/login'>Login</Link> | <Link to='/admin_portal'>Admin Portal</Link>
+      </div> */}
       <div>{message}</div>
         <Route exact path='/'>
           <Home username={user.username} />
