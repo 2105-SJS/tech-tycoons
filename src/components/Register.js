@@ -40,18 +40,19 @@ const Register = ({ setToken, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const resp = await fetch(`/api/users/${params.method}`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          password,
-          firstName,
-          lastName,
-          email
+      try {
+        const resp = await fetch(`/api/users/register`, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            firstName,
+            lastName,
+            email
+          })
         })
       })
       console.log(resp)

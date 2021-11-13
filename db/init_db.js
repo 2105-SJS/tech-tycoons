@@ -178,7 +178,7 @@ async function createInitialOrders() {
       { userId: 2, status: 'created', datePlaced: '2021-11-10' },
       { userId: 1, status: 'completed', datePlaced: '2021-11-05' },
       { userId: 1, status: 'cancelled', datePlaced: '2021-11-06' },
-      { userId: 3, status: 'completed', datePlaced: '2021-10-31' },
+      { userId: 3, status: 'created', datePlaced: '2021-10-31' },
       { userId: 2, status: 'created', datePlaced: '2021-11-10' },
       { userId: 3, status: 'completed', datePlaced: '2021-11-01' }
     ]
