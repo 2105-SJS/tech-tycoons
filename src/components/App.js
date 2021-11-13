@@ -41,7 +41,7 @@ const App = () => {
           <Home username={user.username} />
         </Route>
         <Route exact path='/products'>
-          <Products products={products} setProducts={setProducts} />
+          <Products products={products} setProducts={setProducts} orders={orders} token={token} />
         </Route>
         <Route exact path='/users/register'>
           <Register setToken={setToken} setUser={setUser} />

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { callApi } from "./util/callApi";
+import { useHistory } from "react-router";
 
 import { Button, Card, CardContent, CssBaseline, Grid, Typography, Container, TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Products = ({ products, setProducts }) => {
+const Products = ({ products, setProducts, token }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const theme = createTheme();
+    const history = useHistory()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -27,7 +29,17 @@ const Products = ({ products, setProducts }) => {
         fetchProducts()
     }, [])
     console.log('products:', products)
-
+    const handleAdd = async (product) => {
+        try {
+            const addedOrder = await callApi({ url: '/api/orders', method: 'POST', token, body: product})
+            console.log('did it work?:', addedOrder)
+        } catch (error) {
+            console.error(error)
+        }
+        if(addedOrder){
+        history.push('/cart')
+        }
+    }
 
     return <>
         <ThemeProvider theme={theme}>
@@ -58,7 +70,8 @@ const Products = ({ products, setProducts }) => {
                                                 <h4>By: {product.author}</h4>
                                                 <em>{product.description}</em>
                                                 <h4>${product.price}</h4>
-                                                <Button startIcon={<ShoppingCartIcon />} variant="text">Add to cart</Button>
+                                                <Button onClick={() => {
+                                                    handleAdd(product)}}startIcon={<ShoppingCartIcon />} variant="text">Add to cart</Button>
                                             </Typography>
                                         </CardContent>
                                     </div>
