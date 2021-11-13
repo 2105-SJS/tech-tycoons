@@ -15,11 +15,14 @@ const {
 } = require('../db');
 
 const {STRIPE_SECRET_KEY} = process.env;
+console.log("stripeKey:", STRIPE_SECRET_KEY)
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
+
+
 
 const calculateOrderAmount = (items) => {
     
-    return 10;
+    return 1000;
 };
 
 ordersRouter.post("/create-payment-intent", async (req, res) => {
@@ -32,6 +35,7 @@ ordersRouter.post("/create-payment-intent", async (req, res) => {
            "card",
         ],
     });
+    console.log('paymentIntent:', paymentIntent)
     res.send ({
         clientSecret: paymentIntent.client_secret,
     });
