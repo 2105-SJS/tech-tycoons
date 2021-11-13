@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BOOKSHELF</title>
   <style>
-    * {
-      box-sizing: border-box;
-      border: 0;
-      padding: 0;
-      margin: 0;
+    .title {
+      color: blue
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-left: 30px;
+    }
+
+    .cartContent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        padding-left: 15px;
+        padding-bottom: 25px;
+    }
+
+    .singleProduct {
+        width: 25%;
+        border-radius: 5px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        margin: 10px;
+        padding-left:5px;
+        padding-right: 5px;
+        background-color: #F7F7F7;
+    }
+
+    .picture {
+      width:60%;
+      margin-left: 20%;
+    }
+
+    .searchBar {
+      width: 300px;
+    }
+
+    .description {
+      width: 95%;
+      height: 150px;
+    }
+
+    .input {
+      width: 95%;
+    }
+
+    .cartImg {
+      width: 7%;
+      padding: 4px;
+      float: left;
+    }
+
+    .singleCart {
+        width: 80%;
+        border: solid black 2px;
+        border-radius: 7px;
+        box-shadow: 1px 3px 3px;
+        margin: 2px;
+        padding-left:5px;
+        padding-right: 5px;
+        background-color:white;
     }
   </style>
 </head>
+
 <body>
   <div id="root"></div>
 </body>
+
 </html>

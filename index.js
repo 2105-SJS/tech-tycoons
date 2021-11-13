@@ -1,3 +1,4 @@
+require('dotenv').config()
 // This is the Web Server
 const express = require('express');
 const server = express();
@@ -20,6 +21,15 @@ server.use('/api', require('./routes'));
 // by default serve up the react app if we don't recognize the route
 server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
+});
+
+
+server.use(({name, message}, req, res, next) => {
+  console.error({name, message})
+  res.status(500);
+  res.send(
+    {name, message}
+  )
 });
 
 // bring in the DB connection
