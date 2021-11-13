@@ -12,6 +12,7 @@ import Register from './Register';
 import Login from './Login';
 import AdminPortal from './AdminPortal';
 import Orders from './Orders';
+import Checkout from './Checkout';
 
 const App = () => {
   const [message, setMessage] = useState('');
