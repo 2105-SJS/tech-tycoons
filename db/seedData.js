@@ -13,7 +13,7 @@ const books = [
         author: 'Mark Manson',
         genre: 'Self-help',
         description: `The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life.`,
-        price: 10.50,
+        price: 10.51,
         inStock: true,
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
     },
@@ -31,7 +31,7 @@ const books = [
         author: 'Alexandre Dumas',
         genre: 'Adventure',
         description: `A young sailor from Marseilles is poised to become captain of his own ship and marry his beloved. But jealous enemies provoke his arrest, condemning Edmond Dantes to lifelong imprisonment in the infamous Chateau d'If.`,
-        price: '12.69',
+        price: 12.69,
         inStock: true,
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/41HNhXMV9tL._SX323_BO1,204,203,200_.jpg'
     },
@@ -42,7 +42,7 @@ const books = [
         description: `The novel tells the tragic story of Jay Gatsby, a self-made millionaire, and his pursuit of Daisy Buchanan, a wealthy young woman whom he loved in his youth.`,
         price: 8.41,
         inStock: true,
-        imgURL: 'https://www.candlesbook.com/wp-content/uploads/book-cover-art-print-the-great-gatsby.jpg'
+        imgURL: 'https://m.media-amazon.com/images/I/41XMaCHkrgL.jpg'
     },
     {
         title: 'They Both Die at the End',
@@ -184,7 +184,7 @@ const books = [
         author: 'Naomi Krupitsky',
         genre: 'Historical Fiction',
         description: ` A captivating debut novel about the tangled fates of two best friends and daughters of the Italian mafia, and a coming-of-age story of twentieth-century Brooklyn itself.`,
-        price: 21.49,
+        price: 21.43,
         inStock: true,
         imgURL: 'https://images.penguinrandomhouse.com/cover/9780525541998'
     },
@@ -202,7 +202,7 @@ const books = [
         author: 'Stephen King',
         genre: 'Dark Fantasy',
         description: `In his desolate world, which mirrors our own in frightening ways, Roland tracks The Man in Black, encounters an enticing woman named Alice, and begins a friendship with the boy from New York named Jake.`,
-        price: 16.00,
+        price: 16.02,
         inStock: true,
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/4153HF0AQAL.jpg'
     },
@@ -295,6 +295,60 @@ const books = [
         price: 4.92,
         inStock: true,
         imgURL: 'https://m.media-amazon.com/images/I/513NVF-pHOL.jpg'
+    },
+    {
+        title: 'Lord of the Flies',
+        author: 'William Golding',
+        genre: 'Allegorical Novel',
+        description: ` At the dawn of the next world war, a plane crashes on an uncharted island, stranding a group of schoolboys.`,
+        price: 5.97,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1HyUVeEftL.jpg'
+    },
+    {
+        title: 'Of Mice and Men',
+        author: 'John Steinbeck',
+        genre: 'Fiction',
+        description: ` Laborers in California's dusty vegetable fields, they hustle work when they can, living a hand-to-mouth existence. For George and Lennie have a plan: to own an acre of land and a shack they can call their own. When they land jobs on a ranch in the Salinas Valley, the fulfillment of their dream seems to be within their grasp. `,
+        price: 6.96,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71LPo9FucCL.jpg'
+    },
+    {
+        title: 'To Kill A Mockingbird',
+        author: 'Harper Lee',
+        genre: 'Southern Gothic',
+        description: ` One of the most cherished stories of all time, To Kill a Mockingbird has been translated into more than forty languages, sold more than forty million copies worldwide, served as the basis for an enormously popular motion picture, and was voted one of the best novels of the twentieth century by librarians across the country. `,
+        price: 7.14,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/516IbJ592JL._SX342_SY445_QL70_ML2_.jpg'
+    },
+    {
+        title: 'Twilight Series Stephenie Meyer 6 Books Collection Set',
+        author: 'Stephanie Meyer',
+        genre: 'Young Adult',
+        description: ` Twilight Series Stephenie Meyer 6 Books Collection Set (Twilight, New Moon, Eclipse, Breaking Dawn, The Short Second Life Of Bree Tanner, Midnight Sun).`,
+        price: 131.22,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/61dj8UY9g1L.jpg'
+    },
+    {
+        title: 'Moby Dick',
+        author: 'Herman Melville',
+        genre: 'Adventure Fiction',
+        description: ` The book is anarrative of the obsessive quest of Ahab, captain of the whaling ship Pequod, for revenge on Moby Dick, the giant white sperm whale that on a previous voyage bit off his leg at the knee. `,
+        price: 3.95,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/913FLAudHML.jpg'
+    },
+    {
+        title: 'Dracula',
+        author: 'Bram Stoker',
+        genre: 'Horror Fiction',
+        description: ` Dracula is an 1897 Gothic horror novel by Irish author Bram Stoker.Famous for introducing the character of the vampire Count Dracula. `,
+        price: 8.96,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/91wOUFZCE+L.jpg'
     },
 ];
 
