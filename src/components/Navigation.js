@@ -18,6 +18,7 @@ const Navigation = ({token}) => {
                         <Link to='/products' sx={{ my: 1, mx: 1.5 }}>Products</Link>
                         <Link to='/users/register' sx={{ my: 1, mx: 1.5 }}>Register</Link>
                         <Link to='/users/login' sx={{ my: 1, mx: 1.5 }}>Login</Link>
+                        <Link to='/cart' sx={{ my: 1, mx: 1.5 }}>Cart</Link>
                         {token ? <Link to='/admin_portal' sx={{ my: 1, mx: 1.5 }}>Admin Portal</Link> : ''}
                     </nav>
                 </Toolbar>

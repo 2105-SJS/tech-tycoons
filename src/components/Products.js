@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { callApi } from "./util/callApi";
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+import { Button, Card, CardContent, CssBaseline, Grid, Typography, Container, TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const Products = ({ products, setProducts }) => {
     const [searchTerm, setSearchTerm] = useState('')
@@ -48,7 +35,7 @@ const Products = ({ products, setProducts }) => {
             <Container sx={{ p: 4 }} maxWidth="sm">
                 <Typography variant="h3" align="center" color="text.primary" gutterBottom>What will you read next?</Typography>
                 <Grid item display='flex' alignItems='center'>
-                    <SearchIcon textIndent='left'/><TextField id="search" label="Search" type="text" placeholder='Search...' onChange={event => { setSearchTerm(event.target.value) }} autoFocus fullWidth />
+                    <SearchIcon textIndent='left' /><TextField id="search" label="Search" type="text" placeholder='Search...' onChange={event => { setSearchTerm(event.target.value) }} autoFocus fullWidth />
                 </Grid>
             </Container>
             <Container sx={{ py: 3 }} maxWidth="xl">
@@ -69,7 +56,7 @@ const Products = ({ products, setProducts }) => {
                                             <Typography>
                                                 <img src={product.imgURL} className='picture' />
                                                 <h4>By: {product.author}</h4>
-                                                <div><em>{product.description}</em></div>
+                                                <em>{product.description}</em>
                                                 <h4>${product.price}</h4>
                                                 <Button startIcon={<ShoppingCartIcon />} variant="text">Add to cart</Button>
                                             </Typography>
