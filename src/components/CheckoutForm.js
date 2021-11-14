@@ -12,7 +12,7 @@ const CheckoutForm = () => {
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect (() => {
+    useEffect(() => {
         if (!stripe) {
             return;
         }
@@ -24,7 +24,7 @@ const CheckoutForm = () => {
             return;
         }
 
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent}) => {
+        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
             switch (paymentIntent.status) {
                 case "succeeded":
                     setMessage("Payment Succeeded!");
@@ -50,7 +50,7 @@ const CheckoutForm = () => {
         }
         setIsLoading(true);
 
-        const {error} = await stripe.confirmPayment({
+        const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 return_url: "http://localhost:3000",
@@ -65,18 +65,18 @@ const CheckoutForm = () => {
     };
 
     return <>
-        <form id = "payment-form" onSubmit = {handleSubmit}>
-            <PaymentElement id = "payment-element" />
+        <form id="payment-form" onSubmit={handleSubmit}>
+            <PaymentElement id="payment-element" />
             <p>
-            <button disabled = {isLoading || !stripe || !elements} id = "submit">
-                <span id = "button-text">
-                    {isLoading ? <div classname = "spinner" id = "spinner"></div> : "Pay now"}
-                </span>
-            </button>
+                <button disabled={isLoading || !stripe || !elements} id="submit">
+                    <span id="button-text">
+                        {isLoading ? <div classname="spinner" id="spinner"></div> : "Pay now"}
+                    </span>
+                </button>
             </p>
-            {message && <div id = "payment-message">{message}</div>}
+            {message && <div id="payment-message">{message}</div>}
         </form>
     </>
 }
 
-export default CheckoutForm; 
+export default CheckoutForm;
