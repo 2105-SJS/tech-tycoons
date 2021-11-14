@@ -1,28 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
+import { AppBar, Toolbar, CssBaseline, Typography, Button } from '@mui/material';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
-const Navigation = ({user}) => {
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const Navigation = ({ user }) => {
+    const theme = createTheme({
+        palette: {
+            primary: {
+                light: '#cdae88',
+                main: '#5e4a33',
+                dark: '#665440',
+                contrastText: '#fff',
+            },
+            secondary: {
+                light: '#9f886e',
+                main: '#876b4a',
+                dark: '#5C4033',
+                contrastText: '#000',
+            },
+        },
+    });
     return (<>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar position="static" elevation={0} sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}>
-                <Toolbar sx={{ flexWrap: 'wrap', justifyContent:'space-between' }}>
-                    <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                        BOOKSHELF
+            <AppBar position="static" elevation={0} sx={{ backgroundColor: (theme) => `1px solid ${theme.palette.primary}` }}>
+                <Toolbar sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                    <Typography display='flex' alignItems='center' variant="h3" noWrap sx={{ flexGrow: 1, p: 1 }}>
+                        BOOKSHELF <LocalLibraryIcon />
                     </Typography>
-                    <nav>
-                        <Link to='/' sx={{my: 1, mx: 1.5 }}>Home</Link>
-                        <Link to='/products' sx={{ my: 1, mx: 1.5 }}>Products</Link>
-                        <Link to='/users/register' sx={{ my: 1, mx: 1.5 }}>Register</Link>
-                        <Link to='/users/login' sx={{ my: 1, mx: 1.5 }}>Login</Link>
-                        <Link to='/cart' sx={{ my: 1, mx: 1.5 }}>Cart</Link>
-                        {user.isAdmin ? <Link to='/admin_portal' sx={{ my: 1, mx: 1.5 }}>Admin Portal</Link> : null}
-                    </nav>
+                    <Typography display='flex' justifyContent='space-between' sx={{ flexGrow: 5, p: 3 }}>
+                        <Button component={Link} variant="contained" to="/">
+                            Home
+                        </Button>
+                        <Button component={Link} variant="contained" to="/products">
+                            Products
+                        </Button>
+                        <Button component={Link} variant="contained" to="/users/register">
+                            Register
+                        </Button>
+                        <Button component={Link} variant="contained" to="/users/login">
+                            Login
+                        </Button>
+                        <Button component={Link} variant="contained" to="/cart">
+                            Cart
+                        </Button>
+                        {user.isAdmin ? <Button component={Link} variant="contained" to="/admin_portal">
+                            Admin Portal
+                        </Button> : null}
+                    </Typography>
                 </Toolbar>
             </AppBar>
+        </ThemeProvider>
     </>
     )
 }
