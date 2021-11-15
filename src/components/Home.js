@@ -35,18 +35,7 @@ const Home = ({ username }) => {
                     }
                 </Grid>
             </Container>
-            <Grid container component="main" sx={{ height: '100vh' }}>
-                <Grid
-                    item
-                    xl
-                    sx={{
-                        backgroundImage: 'url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Ym9va3NoZWxmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: '#FEFAE0',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                    }} />
-            </Grid>
+            <img src='https://www.thespruce.com/thmb/YPjbjXExku3d_pmVrVrlgnJEwPY=/4543x2555/smart/filters:no_upscale()/how-to-sell-used-books-for-the-most-cash-1388970-01-7815a93d4c95431999e1b5192ece1699.jpg' className='homepageImg'></img>
         </ThemeProvider>
     </>)
 }

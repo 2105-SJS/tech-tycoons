@@ -25,13 +25,13 @@ const App = () => {
   const [orders, setOrders] = useState([])
   
 
-  useEffect(() => {
-    const localToken = localStorage.getItem('token')
-    console.log('storageToken:', localToken)
-    if(localToken){
-      setToken(localToken)
-    }
-  });
+  // useEffect(() => {
+  //   const localToken = localStorage.getItem('token')
+  //   console.log('storageToken:', localToken)
+  //   if(localToken){
+  //     setToken(localToken)
+  //   }
+  // });
   console.log('user1:', user)
   console.log('tokentoken:', token)
   return (
