@@ -17,6 +17,9 @@ const Orders = ({ token, orders, setOrders }) => {
                 console.log('orderResp:', orderResp)
                 if (orderResp) {
                     setOrders(orderResp)
+                    localStorage.setItem('orders', orders)
+                    const storage = localStorage.getItem('orders')
+                    console.log('storage:', storage)
                     return orderResp
                 }
             } catch (error) {

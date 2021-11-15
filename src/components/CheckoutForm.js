@@ -4,6 +4,7 @@ import {
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
+const {REACT_APP_ROOT_URL = 'http://localhost:3000'} = process.env
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -11,6 +12,7 @@ const CheckoutForm = () => {
 
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [completeOrder, setCompleteOrder] = useState([])
 
     useEffect(() => {
         if (!stripe) {
@@ -53,7 +55,7 @@ const CheckoutForm = () => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:3000",
+                return_url: `${REACT_APP_ROOT_URL}/complete_your_order`,
             },
         });
         if (error.type === "card_error" || error.type === "validation_error") {
@@ -62,8 +64,7 @@ const CheckoutForm = () => {
             setMessage("An unexpected error occured.");
         }
         setIsLoading(false);
-    };
-
+    }
     return <>
         <form id="payment-form" onSubmit={handleSubmit}>
             <PaymentElement id="payment-element" />

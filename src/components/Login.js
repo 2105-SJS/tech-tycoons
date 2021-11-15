@@ -60,8 +60,10 @@ const Login = ({ setToken, setUser }) => {
       const token = data.token
       console.log(token)
       setToken(token)
+      localStorage.setItem('token', token)
       if (data) {
         setUser(data.user)
+
         history.push('/')
       }
     }

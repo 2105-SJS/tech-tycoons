@@ -14,6 +14,8 @@ import AdminPortal from './AdminPortal';
 import Orders from './Orders';
 import Checkout from './Checkout';
 import Navigation from './Navigation';
+import CheckoutForm from './CheckoutForm';
+import FinishOrder from './FinishOrder';
 
 const App = () => {
   const [message, setMessage] = useState('');
@@ -21,21 +23,20 @@ const App = () => {
   const [user, setUser] = useState('')
   const [token, setToken] = useState('')
   const [orders, setOrders] = useState([])
+  
 
-  // useEffect(() => {
-  //   getSomething()
-  //     .then(response => {
-  //       setMessage(response.message);
-  //     })
-  //     .catch(error => {
-  //       setMessage(error.message);
-  //     });
-  // });
+  useEffect(() => {
+    const localToken = localStorage.getItem('token')
+    console.log('storageToken:', localToken)
+    if(localToken){
+      setToken(localToken)
+    }
+  });
   console.log('user1:', user)
   console.log('tokentoken:', token)
   return (
     <div className="App">
-      <Navigation user={user}/>
+      <Navigation token={token} user={user}/>
       <div>{message}</div>
         <Route exact path='/'>
           <Home username={user.username} />
@@ -53,8 +54,12 @@ const App = () => {
           <AdminPortal admin={user.isAdmin}/>
         </Route>
         <Route exact path='/cart'>
-          <Orders orders={orders} setOrders={setOrders} token={token}/>
+          <Orders orders={orders} setOrders={setOrders} token={token} />
         </Route>
+        <Route exact path='/complete_your_order'>
+          <FinishOrder orders={orders} setOrders={setOrders} token={token}/>
+        </Route>
+  
     </div>
   );
 }
