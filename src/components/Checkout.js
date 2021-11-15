@@ -30,7 +30,7 @@ const Checkout = () => {
       }, []);
 
       const appearance = {
-        theme: 'light',
+        theme: 'flat',
       };
       const options = {
         clientSecret,

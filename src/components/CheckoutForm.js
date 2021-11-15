@@ -4,6 +4,7 @@ import {
     useStripe,
     useElements
 } from "@stripe/react-stripe-js";
+const {REACT_APP_ROOT_URL = 'http://localhost:3000'} = process.env
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -11,8 +12,9 @@ const CheckoutForm = () => {
 
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [completeOrder, setCompleteOrder] = useState([])
 
-    useEffect (() => {
+    useEffect(() => {
         if (!stripe) {
             return;
         }
@@ -24,7 +26,7 @@ const CheckoutForm = () => {
             return;
         }
 
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent}) => {
+        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
             switch (paymentIntent.status) {
                 case "succeeded":
                     setMessage("Payment Succeeded!");
@@ -50,10 +52,10 @@ const CheckoutForm = () => {
         }
         setIsLoading(true);
 
-        const {error} = await stripe.confirmPayment({
+        const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: "http://localhost:3000",
+                return_url: `${REACT_APP_ROOT_URL}/complete_your_order`,
             },
         });
         if (error.type === "card_error" || error.type === "validation_error") {
@@ -62,21 +64,20 @@ const CheckoutForm = () => {
             setMessage("An unexpected error occured.");
         }
         setIsLoading(false);
-    };
-
+    }
     return <>
-        <form id = "payment-form" onSubmit = {handleSubmit}>
-            <PaymentElement id = "payment-element" />
+        <form id="payment-form" onSubmit={handleSubmit}>
+            <PaymentElement id="payment-element" />
             <p>
-            <button disabled = {isLoading || !stripe || !elements} id = "submit">
-                <span id = "button-text">
-                    {isLoading ? <div classname = "spinner" id = "spinner"></div> : "Pay now"}
-                </span>
-            </button>
+                <button disabled={isLoading || !stripe || !elements} id="submit">
+                    <span id="button-text">
+                        {isLoading ? <div classname="spinner" id="spinner"></div> : "Pay now"}
+                    </span>
+                </button>
             </p>
-            {message && <div id = "payment-message">{message}</div>}
+            {message && <div id="payment-message">{message}</div>}
         </form>
     </>
 }
 
-export default CheckoutForm; 
+export default CheckoutForm;

@@ -21,7 +21,22 @@ function Copyright(props) {
 const Login = ({ setToken, setUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#cdae88',
+            main: '#5e4a33',
+            dark: '#6F4E37',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#9f886e',
+            main: '#876b4a',
+            dark: '#5C4033',
+            contrastText: '#000',
+        },
+    },
+});
   const params = useParams();
   const history = useHistory();
 
@@ -45,8 +60,10 @@ const Login = ({ setToken, setUser }) => {
       const token = data.token
       console.log(token)
       setToken(token)
+      localStorage.setItem('token', token)
       if (data) {
         setUser(data.user)
+
         history.push('/')
       }
     }
@@ -139,27 +156,3 @@ const Login = ({ setToken, setUser }) => {
 }
 
 export default Login;
-
-
-//-------
-
-
-
-
-
-
-//               <Grid container>
-//                 <Grid item xs>
-//                   <Link href="#" variant="body2">
-//                     Forgot password?
-//                   </Link>
-//                 </Grid>
-//               </Grid>
-//               <Copyright sx={{ mt: 5 }} />
-//             </Box>
-//           </Box>
-//         </Grid>
-//       </Grid>
-//     </ThemeProvider>
-//   );
-// }
