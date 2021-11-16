@@ -23,7 +23,7 @@ const Home = ({ username }) => {
     return (<>
         <ThemeProvider theme={theme}>
             <Container sx={{ p: 1 }} maxWidth="xl">
-                <Typography variant="h3" align="center" color="text.primary" gutterBottom>Welcome to Bookshelf</Typography>
+                <Typography variant="h3" align="center" color="text.primary" gutterBottom>Welcome to BookShelf</Typography>
                 <Grid item display='flex' justifyContent='center'>
                     {
                         username ? <h3>
