@@ -36,7 +36,7 @@ const App = () => {
   console.log('tokentoken:', token)
   return (
     <div className="App">
-      <Navigation token={token} user={user}/>
+      <Navigation token={token} user={user} orders={orders}/>
       <div>{message}</div>
         <Route exact path='/'>
           <Home username={user.username} />

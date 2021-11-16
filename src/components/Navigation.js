@@ -5,7 +5,7 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Navigation = ({ user }) => {
+const Navigation = ({ user, orders }) => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -44,7 +44,7 @@ const Navigation = ({ user }) => {
                             Login
                         </Button>
                         <Button component={Link} variant="contained" to="/cart">
-                            Cart
+                            Cart({orders.length})
                         </Button>
                         {user.isAdmin ? <Button component={Link} variant="contained" to="/admin_portal">
                             Admin Portal
