@@ -9,15 +9,6 @@ const books = [
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1E+USP9f8L.jpg'
     },
     {
-        title: 'The Subtle Art of Not Giving a F*ck',
-        author: 'Mark Manson',
-        genre: 'Self-help',
-        description: `The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life.`,
-        price: 10.51,
-        inStock: true,
-        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
-    },
-    {
         title: 'The Alchemist',
         author: 'Paulo Coelho',
         genre: 'Fiction',
@@ -52,6 +43,15 @@ const books = [
         price: 8.08,
         inStock: true,
         imgURL: 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1525552784l/40043351._SY475_.jpg'
+    },
+    {
+        title: 'The Subtle Art of Not Giving a F*ck',
+        author: 'Mark Manson',
+        genre: 'Self-help',
+        description: `The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life.`,
+        price: 10.51,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg'
     },
     {
         title: 'Prisoner B-3087',
@@ -349,6 +349,33 @@ const books = [
         price: 8.96,
         inStock: true,
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/91wOUFZCE+L.jpg'
+    },
+    {
+        title: 'Batman: The Killing Joke',
+        author: 'Alan Moore',
+        genre: 'Superhero Comic',
+        description: ` According to the grinning engine of madness and mayhem known as The Joker, that's all that separates the sane from the psychotic. Freed once again from the confines of Arkham Asylum, he's out to prove his deranged point. `,
+        price: 14.87,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/91CLsiEAX8L.jpg'
+    },
+    {
+        title: 'The Iliad',
+        author: 'Homer',
+        genre: 'Epic Poetry',
+        description: ` An ancient Greek epic poem in dactylic hexameter that is traditionally attributed to Homer, The Iliad is usually dated to the 8th century BC and is considered to be among the oldest extant works of Western literature. `,
+        price: 12.47,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/A1sXol13HML.jpg'
+    },
+    {
+        title: 'The Odyssey',
+        author: 'Homer',
+        genre: 'Epic Poetry',
+        description: ` The Odyssey is literature's grandest evocation of an everyman's journey through life. Odysseus' reliance on his wit and wiliness for survival in his encounters with divine and natural forces during his ten-year voyage home to Ithaca after the Trojan War is at once a timeless human story and an individual test of moral endurance. `,
+        price: 12.53,
+        inStock: true,
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/81QAAnCNM7L.jpg'
     },
 ];
 

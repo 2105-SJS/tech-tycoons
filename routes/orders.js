@@ -11,7 +11,8 @@ const {
     getOrderProductByOrderAndProduct,
     updateOrder,
     updateOrderProduct,
-    getOrdersByUserr
+    getOrdersByUserr, 
+    completeOrder
 } = require('../db');
 
 const {STRIPE_SECRET_KEY} = process.env;
@@ -84,6 +85,19 @@ ordersRouter.post('/', requireUser, async (req, res, next) => {
         next(error);
     };
 });
+
+ordersRouter.patch('/completeorder', requireUser, async (req, res, next) => {
+    try {
+        const { id } = req.body
+        const completedOrder = await completeOrder({id: id})
+        console.log('completed order:', completedOrder)
+        if(completedOrder){
+            res.status(200)
+        }
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 ordersRouter.post('/:orderId/products', requireUser, async (req, res, next) => {
     try {

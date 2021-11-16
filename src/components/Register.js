@@ -24,7 +24,22 @@ const Register = ({ setToken, setUser }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+        primary: {
+            light: '#cdae88',
+            main: '#5e4a33',
+            dark: '#6F4E37',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#9f886e',
+            main: '#876b4a',
+            dark: '#5C4033',
+            contrastText: '#000',
+        },
+    },
+});
   const params = useParams();
   const history = useHistory();
   const baseURL = '/api/users';
@@ -73,7 +88,7 @@ const Register = ({ setToken, setUser }) => {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://i2.wp.com/localprofile.com/wp-content/uploads/2016/06/books.jpg)',
+            backgroundImage: 'url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
