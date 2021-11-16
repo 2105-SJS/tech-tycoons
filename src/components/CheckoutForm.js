@@ -55,7 +55,7 @@ const CheckoutForm = () => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `${REACT_APP_ROOT_URL}complete_your_order`,
+                return_url: `${REACT_APP_ROOT_URL}/complete_your_order`,
             },
         });
         if (error.type === "card_error" || error.type === "validation_error") {
