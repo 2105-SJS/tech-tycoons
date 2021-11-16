@@ -351,13 +351,13 @@ const books = [
         imgURL: 'https://images-na.ssl-images-amazon.com/images/I/91wOUFZCE+L.jpg'
     },
     {
-        title: 'Cracking the Coding Interview: 189 Programming Questions and Solutions',
-        author: 'Gayle Laakmann McDowell',
-        genre: 'Textbook',
-        description: ` Learn how to uncover the hints and hidden details in a question, discover how to break down a problem into manageable chunks, develop techniques to unstick yourself when stuck, learn (or re-learn) core computer science concepts, and practice on 189 interview questions and solutions. `,
-        price: 24.78,
+        title: 'Batman: The Killing Joke',
+        author: 'Alan Moore',
+        genre: 'Superhero Comic',
+        description: ` According to the grinning engine of madness and mayhem known as The Joker, that's all that separates the sane from the psychotic. Freed once again from the confines of Arkham Asylum, he's out to prove his deranged point. `,
+        price: 14.87,
         inStock: true,
-        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SX348_BO1,204,203,200_.jpg'
+        imgURL: 'https://images-na.ssl-images-amazon.com/images/I/91CLsiEAX8L.jpg'
     },
     {
         title: 'The Iliad',
